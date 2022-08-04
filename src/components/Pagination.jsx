@@ -63,7 +63,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current={pageNumber == currentPage ? "true" : "false"} // change this line to highlight a current page.
+            aria-current={pageNumber == currentPage ? "page" : "false"} // change this line to highlight a current page.
           >
             <button
               type="button"
