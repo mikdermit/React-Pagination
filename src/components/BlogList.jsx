@@ -19,7 +19,7 @@ function BlogList() {
   }, [currentPage, pageSize])
 
   const updateRowsPerPage = (event) => {
-    setPageSize(event)
+    setPageSize(Number(event))
   };
   const updatePage = (event) => {
     setCurrentPage(event)
