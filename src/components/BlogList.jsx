@@ -32,7 +32,7 @@ function BlogList() {
       <Pagination
         currentPage={currentPage}
         totalCount={blogs.posts.length}
-        pageSize={pageSize.current}
+        pageSize={pageSize}
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
