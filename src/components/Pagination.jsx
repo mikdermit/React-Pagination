@@ -22,11 +22,15 @@ function Pagination({
   });
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    const newPage = currentPage + 1
+    const index = currentPage * pageSize
+    onPageChange(newPage, index);
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1);
+    const newPage = currentPage - 1
+    const index = (newPage - 1) * pageSize
+    onPageChange(newPage, index);
   };
 
   return (
@@ -42,7 +46,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage === 1} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
@@ -63,7 +67,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={pageNumber == currentPage ? "page" : "false"} // change this line to highlight a current page.
           >
             <button
               type="button"
@@ -121,7 +125,7 @@ Pagination.propTypes = {
 Pagination.defaultProps = {
   totalCount: 0,
   currentPage: 1,
-  pageSize: 1,
+  pageSize: 15,
   pageSizeOptions: [15, 25, 50, 100],
   onPageChange: () => {},
   onPageSizeOptionChange: () => {},
