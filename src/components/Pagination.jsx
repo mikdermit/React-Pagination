@@ -22,11 +22,15 @@ function Pagination({
   });
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    const newPage = currentPage + 1
+    const index = currentPage * pageSize
+    onPageChange(newPage, index);
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1);
+    const newPage = currentPage - 1
+    const index = (newPage - 1) * pageSize
+    onPageChange(newPage, index);
   };
 
   return (
@@ -121,7 +125,7 @@ Pagination.propTypes = {
 Pagination.defaultProps = {
   totalCount: 0,
   currentPage: 1,
-  pageSize: 1,
+  pageSize: 15,
   pageSizeOptions: [15, 25, 50, 100],
   onPageChange: () => {},
   onPageSizeOptionChange: () => {},

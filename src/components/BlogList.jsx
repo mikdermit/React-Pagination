@@ -11,18 +11,20 @@ function BlogList() {
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(15)
   const [currentData, setCurrentData] = useState(blogs.posts.slice(0, 15))
+  const [startIndex, setStartIndex] = useState(0)
+  
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * pageSize
     const endIndex = startIndex + pageSize
     setCurrentData(blogs.posts.slice(startIndex, endIndex))
   }, [currentPage, pageSize])
 
-  const updateRowsPerPage = (event) => {
+  const updateRowsPerPage = (event, pageSize) => {
     setPageSize(Number(event))
   };
-  const updatePage = (event) => {
-    setCurrentPage(event)
+  const updatePage = (newPage, index) => {
+    setStartIndex(index)
+    setCurrentPage(newPage)
   };
 
   return (
@@ -30,7 +32,7 @@ function BlogList() {
       <Pagination
         currentPage={currentPage}
         totalCount={blogs.posts.length}
-        pageSize={pageSize}
+        pageSize={pageSize.current}
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
